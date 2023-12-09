@@ -2,7 +2,7 @@
 import { useState,useEffect } from 'react'
 import './App.css'
 import {db} from "./firebase-config";
-import {collection , getDocs , addDoc} from "firebase/firestore";
+import {collection , getDocs , addDoc , updateDoc ,deleteDoc,doc} from "firebase/firestore";
 
 function App() {
 
@@ -11,6 +11,17 @@ function App() {
   const [newAge , setNewAge] =useState(0)
   const [users ,setUsers] = useState([]);
   const userCollectionRef = collection(db , "user")
+
+  
+  const deleteUser = async (id) => {
+    await deleteDoc(doc(db, "user", id));
+  };
+
+  // await deleteDoc(doc(db, "users", "DC"));
+
+  const updateUser = async (id, age) => {
+    await updateDoc(doc(db, "user", id), {age: age + 1});
+  };
 
 
   const createUser = async () => {
@@ -51,15 +62,37 @@ function App() {
 
     {users.map((user) => {
       return (
-        <div >
+
+        
+        <div key={user.age} >
           {" "}
           <h1>Name: {user.name}</h1>
           <h1>Age: {user.age}</h1>
 
+          <button
+              onClick={() => {
+                updateUser(user.id, user.age);
+              }}
+            >
+              {" "}
+              Increase Age
+            </button>
+
+            <button
+              onClick={() => {
+                deleteUser(user.id);
+              }}
+            >
+              {" "}
+              Delete User
+            </button>
 
         </div>
       )
     })}
+
+
+    
       
     </>
   )
