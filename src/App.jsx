@@ -1,9 +1,8 @@
-
 import { useState,useEffect } from 'react'
 import './App.css'
 import {db} from "./firebase-config";
+import  Navbar  from './Navbar';
 import {collection , getDocs , addDoc , updateDoc ,deleteDoc,doc} from "firebase/firestore";
-
 function App() {
 
   const [newName ,setNewName] = useState("");
@@ -48,6 +47,11 @@ function App() {
 
   return (
     <>
+
+    <Navbar/>
+
+
+    
     <input placeholder='Name...' 
     
     onChange={(event) => {setNewName(event.target.value);
