@@ -1,7 +1,72 @@
+*{
+  font-family:"Roboto" ;
+}
 
-.active{
+.abc{
 
-  color:green;
+  text-decoration: none;
+  color: rgb(8, 8, 8);
+
+
+}
+
+.head{
+
+  /* font-weight:100; */
+  
+
+   margin-bottom: 50px;
+   display: flex;
+   justify-content: center;
+   margin-top: 50px;
+
+
+
+
+  
+
+}
+
+.heading
+{
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content{
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.def{
+  text-decoration: none;
+
+  color: white;
+
+}
+
+.succ{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+
+}
+
+
+.active {
+  
+  color:rgb(60, 179, 215);
+}
+.def .active {
+  color: white;
+
 }
 
 .header .container {

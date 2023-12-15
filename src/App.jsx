@@ -2,16 +2,22 @@ import { useState,useEffect } from 'react'
 import './App.css'
 import {db} from "./firebase-config";
 import  Navbar  from './Navbar';
-import {collection , getDocs , addDoc , updateDoc ,deleteDoc,doc} from "firebase/firestore";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import {collection , getDocs , updateDoc ,deleteDoc,doc} from "firebase/firestore";
 function App() {
 
-  const [newName ,setNewName] = useState("");
 
-  const [newAge , setNewAge] =useState(0)
   const [users ,setUsers] = useState([]);
   const userCollectionRef = collection(db , "user")
 
-  
+   
   const deleteUser = async (id) => {
     await deleteDoc(doc(db, "user", id));
   };
@@ -23,12 +29,7 @@ function App() {
   };
 
 
-  const createUser = async () => {
 
-    await addDoc(userCollectionRef , {name : newName , age: newAge});
-
-
-  };
 
 
 
@@ -51,18 +52,13 @@ function App() {
     <Navbar/>
 
 
-    
-    <input placeholder='Name...' 
-    
-    onChange={(event) => {setNewName(event.target.value);
-    }}
-    />
-    <input placeholder='Age...'
-    
-    onChange={(event) => {setNewAge(event.target.value);
-    }}/>
+    {/* <Typography variant='h2'>Raghav Blog</Typography> */}
 
-    <button onClick={createUser}>Create User</button>
+   
+
+
+    
+
 
     {users.map((user) => {
       return (
@@ -70,26 +66,55 @@ function App() {
         
         <div key={user.age} >
           {" "}
-          <h1>Name: {user.name}</h1>
-          <h1>Age: {user.age}</h1>
 
-          <button
-              onClick={() => {
-                updateUser(user.id, user.age);
-              }}
-            >
-              {" "}
-              Increase Age
-            </button>
 
-            <button
-              onClick={() => {
+          <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        image="/src/blog.jpeg"
+        title="green iguana"
+      />
+      <CardContent>
+
+
+        <Typography gutterBottom variant="h5" component="div">
+         {user.name}
+          
+        </Typography>
+
+
+
+
+        <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: user.age }}/>
+        
+
+
+
+
+      </CardContent>
+      <CardActions>
+        <Button variant="outlined" startIcon={<EditIcon/>}
+
+onClick={() => {
+  updateUser(user.id, user.age);
+}}
+        >
+  Edit
+</Button>
+
+
+        <Button variant="outlined" startIcon={<DeleteIcon />}
+
+                onClick={() => {
                 deleteUser(user.id);
-              }}
-            >
-              {" "}
-              Delete User
-            </button>
+              }}>
+              Delete
+            
+        </Button>
+
+      </CardActions>
+    </Card>
+         
 
         </div>
       )
