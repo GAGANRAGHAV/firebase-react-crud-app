@@ -1,92 +1,86 @@
-import { useState,useRef} from 'react'
-import JoditEditor from 'jodit-react';
-import TextField from '@mui/material/TextField';
-import {db} from "./firebase-config";
-import  Navbar  from './Navbar';
-import {collection , addDoc} from "firebase/firestore";
-import Button from '@mui/material/Button';
-// import Toolbar from '@mui/material/Toolbar';
-// import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-// import Card  from '@mui/material';
-
+import { useState, useRef } from "react";
+import JoditEditor from "jodit-react";
+import TextField from "@mui/material/TextField";
+import { db } from "./firebase-config";
+import Navbar from "./Navbar";
+import { collection, addDoc } from "firebase/firestore";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Blog = () => {
-    const editor = useRef(null);
-    const [newName ,setNewName] = useState("");
+  const editor = useRef(null);
+  const [newName, setNewName] = useState("");
+  const [content, setContent] = useState("");
+  const userCollectionRef = collection(db, "user");
+  const navigate = useNavigate();
 
-    const [newAge , setNewAge] =useState("");
-    const [content, setContent] = useState('');
-    const userCollectionRef = collection(db , "user");
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
 
-
-    const createUser = async () => {
-
-        await addDoc(userCollectionRef , {name : newName , age: content});
+    // Check if either heading or content is empty, then show a toast notification and return without submitting
+    if (!newName.trim() || !content.trim()) {
+      toast.error("Please fill in all fields");
+      return;
+    }
     
-    
-      };
-    
-     
+
+    const docRef = await addDoc(userCollectionRef, { name: newName, age: content });
+    const newPostId = docRef.id;
+    console.log(newPostId);
+    // await addDoc(userCollectionRef, { name: newName, age: content });
+    toast.success("Blog submitted successfully!"); // Display success toast
+    // Delay navigation to give time for the toast to be displayed
+    setTimeout(() => {
+    navigate(`/blog/${newPostId}`);
+    }, 2000); // Adjust the delay time as needed
+  };
 
   return (
     <div>
+      <Navbar />
+      <ToastContainer /> {/* ToastContainer to display notifications */}
 
-        <Navbar/>
-
+      <form onSubmit={handleSubmit}>
         <div className="head">
-
-    <Typography variant='h2' className='head' >Write a Blog !!</Typography>
-
-
+          <Typography variant="h2" className="head">
+            Write a Blog !!
+          </Typography>
         </div>
 
+        <div className="heading">
+          <TextField
+            id="outlined-basic"
+            label="Heading"
+            variant="outlined"
+            value={newName}
+            onChange={(event) => {
+              setNewName(event.target.value);
+            }}
+          />
+        </div>
 
-    <div className="heading">
+        <div className="content">
+          <JoditEditor
+            required
+            ref={editor}
+            value={content}
+            tabIndex={1}
+            onBlur={(newContent) => setContent(newContent)}
+            onChange={(newContent) => {}}
+          />
+        </div>
 
-        <TextField id="outlined-basic" label="Heading" variant="outlined" onChange={(event) => {setNewName(event.target.value);
-    }} />
-</div>
-    {/* {console.log(newContent)} */}
-
-
-<div className="content">
-
-<JoditEditor
-			ref={editor}
-			value={content}
-			
-			tabIndex={1} // tabIndex of textarea
-			onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-			onChange={newContent => {}}
-		/>
-
-
-</div>
-
-<div className="succ">
-
-
-
-<Button variant="contained" color="success" 
-
-onClick={createUser}
->
-  SUBMIT
-</Button>
-
-</div>
-
-
-
-        
-
-        
-        
-    
-    
+        <div className="succ">
+          <Button type="submit" variant="contained" color="success">
+            SUBMIT
+          </Button>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

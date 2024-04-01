@@ -1,0 +1,26 @@
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 40px 40px; */
+    height: 100vh;
+}
+
+.herotext{
+    width: 50%;
+
+}
+
+.text1{
+    font-size: 40px;
+}
+
+.text2{
+    font-weight: 300;
+}
+
+.imagic{
+    width: 500px;
+    border-radius: 20%;
+
+}

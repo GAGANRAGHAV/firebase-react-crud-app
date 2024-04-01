@@ -1,4 +1,5 @@
 import { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import './App.css'
 import {db} from "./firebase-config";
 import  Navbar  from './Navbar';
@@ -10,7 +11,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import {collection , getDocs , updateDoc ,deleteDoc,doc} from "firebase/firestore";
+import {collection , getDocs ,deleteDoc,doc} from "firebase/firestore";
+import Hero from './Hero';
 function App() {
 
 
@@ -24,9 +26,9 @@ function App() {
 
   // await deleteDoc(doc(db, "users", "DC"));
 
-  const updateUser = async (id, age) => {
-    await updateDoc(doc(db, "user", id), {age: age + 1});
-  };
+  // const updateUser = async (id, age) => {
+  //   await updateDoc(doc(db, "user", id), {age: age + 1});
+  // };
 
 
 
@@ -37,7 +39,6 @@ function App() {
 
     const getUsers = async () => {
       const data = await getDocs(userCollectionRef);
-      console.log(data);
 
       setUsers(data.docs.map((doc) => ({...doc.data() , id: doc.id})));
 
@@ -50,6 +51,7 @@ function App() {
     <>
 
     <Navbar/>
+    <Hero/>
 
 
     {/* <Typography variant='h2'>Raghav Blog</Typography> */}
@@ -93,14 +95,11 @@ function App() {
 
       </CardContent>
       <CardActions>
-        <Button variant="outlined" startIcon={<EditIcon/>}
-
-onClick={() => {
-  updateUser(user.id, user.age);
-}}
-        >
-  Edit
-</Button>
+      <Link to={`/blog/${user.id}`}>
+  <Button variant="outlined" startIcon={<EditIcon />}>
+    Read More
+  </Button>
+</Link>
 
 
         <Button variant="outlined" startIcon={<DeleteIcon />}

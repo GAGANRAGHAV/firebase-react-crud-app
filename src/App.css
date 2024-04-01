@@ -62,7 +62,7 @@
 
 .active {
   
-  color:rgb(60, 179, 215);
+  /* color:rgb(60, 179, 215); */
 }
 .def .active {
   color: white;

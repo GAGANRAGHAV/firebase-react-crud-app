@@ -9,44 +9,35 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Typography from '@mui/material/Typography';
 // import Link from '@mui/material/Link';
 
+import "./Navbar.css"
+
 const Navbar = () => {
   return (
-    <div>
-      <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-
-        <Button size="small"
+    <div className='navit'>
+      <Toolbar  className="navi"sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <div className="">
         
-        
-        
-        >
-          <NavLink to="/"  className="abc">HOME</NavLink>
-
-        </Button>
-        <Button size="small">
-        <NavLink to="/about" className="abc">ABOUT</NavLink>
-
-        </Button>
-        <Button size="small">
-        <NavLink to="/contact" className="abc">CONTACT</NavLink>
-
-
-        </Button>
-        
+       
         <Typography
           component="h1"
           variant=""
           color="inherit"
           align="center"
           noWrap
-          sx={{ flex: 1 }}
+          // sx={{ flex: .7 }}
         >
 
-          RaghavBlog
+          <NavLink to="/"  className="abc">RaghavBlog</NavLink>
           
         </Typography>
+      </div>
+
+        
 
 
-        <IconButton>
+<div className="">
+
+<IconButton>
           <GitHubIcon/>
       
         </IconButton>
@@ -66,6 +57,10 @@ const Navbar = () => {
         <NavLink to="/blog" className="def">BLOG</NavLink>
 
         </Button>
+
+
+</div>
+       
 
           
       </Toolbar>
