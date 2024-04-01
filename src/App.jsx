@@ -73,7 +73,7 @@ function App() {
           <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="/src/blog.jpeg"
+        image="/static/blog.jpeg"
         title="green iguana"
       />
       <CardContent>
