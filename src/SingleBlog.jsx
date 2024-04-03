@@ -35,7 +35,7 @@ const SingleBlog = () => {
         {blog ? (
           <div className='blog-cont'>
             <h2>{blog.name}</h2>
-            <img src={blog.image} width={650} height={400} />
+            <img  className='blog-img' src={blog.image} width={650} height={400} />
             <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: blog.age }}/>
             {/* Display other properties of the blog post */}
           </div>

@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase-config";
+import './Blog.css'
 
 const Blog = () => {
   const editor = useRef(null);
@@ -20,6 +21,7 @@ const Blog = () => {
   const userCollectionRef = collection(db, "user");
   const [image, setImage] = useState(null); // State to store selected image
   const navigate = useNavigate();
+
 
   const handleImageChange = (event) => {
     const selectedImage = event.target.files[0];
@@ -104,11 +106,14 @@ const Blog = () => {
 
         <div className="image">
           <input
+            className="input-des"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
             style={{ marginTop: "10px" }}
           />
+
+
         </div>
 
         <div className="succ">

@@ -41,15 +41,7 @@ const Navbar = () => {
           <GitHubIcon/>
       
         </IconButton>
-        
-        <IconButton>
-          <TwitterIcon/>
-      
-        </IconButton>
-        <IconButton>
-          <LinkedInIcon/>
-      
-        </IconButton>
+       
         
 
         <Button variant="contained">

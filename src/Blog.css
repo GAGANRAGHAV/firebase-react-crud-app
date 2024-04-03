@@ -1,0 +1,24 @@
+.input-des {
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+.input-des:hover,
+.input-des:focus {
+  border-color: #007bff; /* Change border color on hover and focus */
+}
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}

@@ -95,53 +95,20 @@ table {
 }
 
 .cardContainer{
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
   gap: 40px;
   margin: 40px;
 }
 
-.card {
-  flex: 1;
-  max-width: calc(33.33% - 20px); /* Calculate the width for each card to fit three cards in a row */
-  /* If you want the cards to be of fixed width, you can set it as follows:
-     width: calc(33.33% - 20px); */
-}
 
-@media (max-width: 768px) {
-  .card {
-    max-width: calc(50% - 20px); /* Adjust for smaller screens to fit two cards in a row */
-    /* If you want the cards to be of fixed width, you can set it as follows:
-       width: calc(50% - 20px); */
+
+@media (max-width:786px) {
+
+  .cardContainer{
+    display: flex;
+    flex-direction: column;
   }
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
