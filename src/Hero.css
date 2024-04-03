@@ -1,8 +1,8 @@
 .hero{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
-    /* margin: 40px 40px; */
+    text-align: center;
     height: 100vh;
 }
 
@@ -19,8 +19,31 @@
     font-weight: 300;
 }
 
-.imagic{
+.imagic {
     width: 500px;
+    display: flex;
     border-radius: 20%;
+    align-items: center;
 
 }
+
+
+
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .text1{
+        font-size: 30px;
+    }
+    .text2{
+        font-size: 20px;
+    }
+    .imagic{
+        width: 400px;
+    }
+  
+  }
+  

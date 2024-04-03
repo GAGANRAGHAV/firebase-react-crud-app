@@ -94,6 +94,28 @@ table {
   pointer-events: none;
 }
 
+.cardContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 40px;
+}
+
+.card {
+  flex: 1;
+  max-width: calc(33.33% - 20px); /* Calculate the width for each card to fit three cards in a row */
+  /* If you want the cards to be of fixed width, you can set it as follows:
+     width: calc(33.33% - 20px); */
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: calc(50% - 20px); /* Adjust for smaller screens to fit two cards in a row */
+    /* If you want the cards to be of fixed width, you can set it as follows:
+       width: calc(50% - 20px); */
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

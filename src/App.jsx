@@ -57,67 +57,38 @@ function App() {
     {/* <Typography variant='h2'>Raghav Blog</Typography> */}
 
    
-
-
-    
-
-
-    {users.map((user) => {
-      return (
-
-        
-        <div key={user.age} >
-          {" "}
-
-
-          <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/blog.jpeg"
-        title="green iguana"
-      />
-      <CardContent>
-
-
-        <Typography gutterBottom variant="h5" component="div">
-         {user.name}
-          
-        </Typography>
-
-
-
-
-        <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: user.age }}/>
-        
-
-
-
-
-      </CardContent>
-      <CardActions>
-      <Link to={`/blog/${user.id}`}>
-  <Button variant="outlined" startIcon={<EditIcon />}>
-    Read More
-  </Button>
-</Link>
-
-
-        <Button variant="outlined" startIcon={<DeleteIcon />}
-
-                onClick={() => {
+    <div className="cardContainer">
+      {users.map((user) => (
+        <Card key={user.name} className="card">
+          <CardMedia
+            sx={{ height: 140 }}
+            image={user.image}
+            title="blog image"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {user.name}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Link to={`/blog/${user.id}`}>
+              <Button variant="outlined" startIcon={<EditIcon />}>
+                Read More
+              </Button>
+            </Link>
+            <Button
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+              onClick={() => {
                 deleteUser(user.id);
-              }}>
+              }}
+            >
               Delete
-            
-        </Button>
-
-      </CardActions>
-    </Card>
-         
-
-        </div>
-      )
-    })}
+            </Button>
+          </CardActions>
+        </Card>
+      ))}
+    </div>
 
 
     

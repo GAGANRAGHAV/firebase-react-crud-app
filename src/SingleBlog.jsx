@@ -4,6 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebase-config';
 import { Typography } from '@mui/material';
 import Navbar from './Navbar';
+import './SingleBlog.css'
 
 const SingleBlog = () => {
   const { id } = useParams();
@@ -30,10 +31,11 @@ const SingleBlog = () => {
   return (
     <div>
       <Navbar />
-      <div>
+      <div className='blog-wrap'>
         {blog ? (
-          <div>
+          <div className='blog-cont'>
             <h2>{blog.name}</h2>
+            <img src={blog.image} width={650} height={400} />
             <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: blog.age }}/>
             {/* Display other properties of the blog post */}
           </div>
